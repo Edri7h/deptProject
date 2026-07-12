@@ -14,7 +14,7 @@ import {
 } from "drizzle-orm";
 
 class UserService {
-
+                                                                                      
 
 
     async acceptTeamInvite(reqObj) {

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { login } from "@/redux/slices/authSlice.js";
+// import socket from "../socket/socket.js"
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -32,6 +33,10 @@ export default function LoginForm() {
       const { data } = await loginAPI(formData);
       console.log(data.data)
       dispatch(login(data.data))
+
+
+      // socket.emit("register",data?.id);
+      
 
       if (data.data.role==="student") {
         navigate("/student");

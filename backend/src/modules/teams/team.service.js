@@ -5,6 +5,7 @@ import { db } from "../../db/index.js";
 import { request } from "../../db/schema/request.js";
 import { notifications } from "../../db/schema/notification.js";
 import { project } from "../../db/schema/project.js";
+import RealtimeService from "../realtime/realtime.service.js";
 
 import {
     eq,
@@ -255,6 +256,12 @@ class TeamService {
                             `${senderName} invited you to join ${existingTeam.teamName}`
                     })
                     .returning();
+
+            RealtimeService.emitToUser(
+                receiverId,
+                "teamInviteReceived",
+                notification
+            );        
 
             return {
                 request: newRequest,

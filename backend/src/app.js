@@ -10,13 +10,13 @@ import teamRoutes from "./modules/teams/team.route.js";
 import userRoutes from "./modules/user/user.route.js";
 import mentorRoutes from "./modules/mentor/mentor.route.js";
 import projectRouter from "./modules/projects/project.route.js"
-
+import dotenv from 'dotenv';
+dotenv.config();
 const app= express();
 
-
 app.use(cors({
-  origin: "https://dept-project.vercel.app",
-  credentials: true
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
 }));
 app.use(cookieParser());
 

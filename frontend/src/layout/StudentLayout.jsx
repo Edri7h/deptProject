@@ -1,15 +1,18 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Bell, LayoutDashboard, LogOut, Send, User } from "lucide-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout, setUserData } from "@/redux/slices/authSlice";
 import { getDashboardAPI, logoutAPI } from "@/services/auth.api";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { clearNotifications } from "@/redux/slices/notificationSlice";
+import socket from "@/socket/socket";
 
 const StudentLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const allNotifications = useSelector(state => state.notification.notifications)
 
   useEffect(() => {
     const loadDashboard = async () => {
@@ -31,6 +34,8 @@ const StudentLayout = () => {
       await logoutAPI();
     } finally {
       dispatch(logout());
+      dispatch(clearNotifications())
+      socket.disconnect();
       toast.success("Logged out");
       navigate("/", { replace: true });
     }
@@ -63,13 +68,30 @@ const StudentLayout = () => {
                   end={item.path === "/student"}
                   to={item.path}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                      isActive ? "bg-blue-600 text-white" : "text-slate-300 hover:bg-slate-800"
+                    `flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive ? "bg-blue-600 text-white" : "text-slate-300 hover:bg-slate-800"
                     }`
                   }
                 >
-                  {item.icon}
+                  {
+                    <div className="relative inline-flex">
+                      {item.icon}
+
+                      {item.name === "Notifications" && allNotifications?.length > 0 && (
+                        <span 
+                          className="
+        absolute -top-2 -right-2
+        flex h-5 min-w-5 items-center justify-center
+        rounded-full bg-red-500 px-1
+        text-[10px] font-semibold text-white
+      "
+                        >
+                          {allNotifications.length > 99 ? "99+" : allNotifications.length}
+                        </span>
+                      )}
+                    </div>
+                  }
                   {item.name}
+
                 </NavLink>
               </li>
             ))}

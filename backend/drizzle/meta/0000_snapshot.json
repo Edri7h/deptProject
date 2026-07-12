@@ -1,5 +1,5 @@
 {
-  "id": "69a1a6eb-9ab7-4057-ac95-6eef44a61acd",
+  "id": "f1026282-02b0-457a-b5f7-b93309f4bb9b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -157,7 +157,7 @@
           "name": "project_id",
           "type": "uuid",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "mentor_id": {
           "name": "mentor_id",
