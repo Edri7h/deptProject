@@ -1,12 +1,12 @@
 import { LayoutDashboard, LogOut } from "lucide-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { logout, setUserData } from "@/redux/slices/authSlice";
 import { logoutAPI, meAPI } from "@/services/auth.api";
 
-export default function ProfessorLayout() {
+const ProfessorLayout=React.memo(()=>{
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -85,4 +85,6 @@ export default function ProfessorLayout() {
       </main>
     </div>
   );
-}
+})
+
+export default  ProfessorLayout

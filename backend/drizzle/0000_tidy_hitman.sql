@@ -29,7 +29,7 @@ CREATE TABLE "team" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"team_name" text NOT NULL,
 	"leader_id" uuid NOT NULL,
-	"project_id" uuid NOT NULL,
+	"project_id" uuid,
 	"mentor_id" uuid,
 	CONSTRAINT "team_project_id_unique" UNIQUE("project_id")
 );
