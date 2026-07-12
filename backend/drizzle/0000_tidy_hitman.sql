@@ -9,7 +9,7 @@ CREATE TABLE "user" (
 	"name" text NOT NULL,
 	"email" text NOT NULL,
 	"password" text NOT NULL,
-	"dept" "deptEnum" NOT NULL,
+	"dept" "deptEnum" NOT NULL, 
 	"roll_No" text,
 	"role" "roleEnum" NOT NULL,
 	"is_active" boolean DEFAULT true,
