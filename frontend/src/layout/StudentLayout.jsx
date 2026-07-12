@@ -129,7 +129,7 @@ import TopHeader from "@/components/navigation/TopHeader";
 
 const StudentLayout = () => {
   return (
-    <div className="min-h-screen bg-slate-950 text-white md:flex">
+   <div className="min-h-screen bg-slate-950 text-white flex">
       {/* Desktop Sidebar */}
       <DesktopSidebar />
 
@@ -138,7 +138,7 @@ const StudentLayout = () => {
         <TopHeader />
 
         <main className="flex-1 overflow-y-auto p-5 md:p-8 pb-24 md:pb-8">
-          <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full">
             <Outlet />
           </div>
         </main>
