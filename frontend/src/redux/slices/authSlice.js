@@ -8,7 +8,7 @@ const initialState = {
   pendingRequests: [],
   mentoredTeams: [],
   stats: null,
-  isLoading: false,
+  isLoading: true,
   isAuthenticated: false,
 };
 
